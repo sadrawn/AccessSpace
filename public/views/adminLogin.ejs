@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="../main.css">
+</head>
+
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class="w-full h-16 bg-gray-800 text-white flex items-center justify-between px-6">
+        <a href="/" class="text-xl font-bold hover:text-gray-400">Home</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="flex items-center justify-center min-h-[90vh]">
+        <form action="/admin" method="post" class="bg-white shadow-lg rounded-lg p-6 w-full max-w-lg space-y-6">
+            <h2 class="text-2xl font-semibold text-center text-gray-700">Admin Login</h2>
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-600">Username</label>
+                <input
+                    class="mt-1 px-4 py-2 border border-gray-300 rounded-md w-full focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                    autocomplete="off" type="text" name="username" id="username" required placeholder="Enter username">
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
+                <input
+                    class="mt-1 px-4 py-2 border border-gray-300 rounded-md w-full focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                    autocomplete="off" type="text" name="password" id="password" required placeholder="Enter password">
+            </div>
+            <button type="submit"
+                class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-md text-lg font-semibold">Submit</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

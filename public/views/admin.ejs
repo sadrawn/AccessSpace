@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link rel="stylesheet" href="../main.css">
+</head>
+
+<body class="bg-gray-100">
+    <% if (message) { %>
+        <script>
+            alert("<%= message %>");
+        </script>
+            <%= delete message %>  // Delete the message from session after showing it
+    <% } %>
+    
+    <!-- Navigation Bar -->
+    <nav class="w-full h-[80px] text-white flex items-center justify-between px-6 sm:px-10 py-2 bg-gray-800">
+        <a href="/adduser" class="bg-white text-blue-600 px-4 py-2 rounded hover:bg-blue-500 hover:text-white transition">
+            Add User
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="min-h-[calc(100vh-80px)] flex flex-col items-center py-8 px-4 sm:px-10">
+        <% if (users && users.length > 0) { %>
+            <section class="w-full grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-start">
+                <% users.forEach(function(user) { %>
+                    <div id="<%= user.username %>-div"
+                        class="bg-white rounded-lg shadow-md p-6 space-y-4 flex flex-col justify-between self-start">
+                        <!-- Username -->
+                        <div class="flex justify-between items-center">
+                            <div class="text-lg font-bold text-gray-700">Username:</div>
+                            <div class="text-gray-800"><%= user.username %></div>
+                        </div>
+            
+                        <!-- Hidden Description -->
+                        <div id="<%= user.username %>-des" class="hidden">
+                            <p class="text-gray-600">Password: <%= user.password %></p>
+                            <form action="/admin/remove/<%= user.username %>" method="POST">
+                                <button type="submit" class="text-red-500 hover:underline mt-2">Remove</button>
+                            </form>
+                        </div>
+            
+                        <!-- Toggle Button -->
+                        <button id="<%= user.username %>"
+                            class="text-blue-500 hover:text-blue-600 transition"
+                            onclick="showDetail(this.id)">
+                            &#9660; Show Details
+                        </button>
+                    </div>
+                <% }); %>
+            </section>
+        <% } else { %>
+            <!-- No Users Found Message -->
+            <section class="flex flex-col items-center justify-center text-center gap-4">
+                <h2 class="text-2xl font-bold text-red-600">NO USERS!</h2>
+                <a href="/adduser" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition">
+                    Add User
+                </a>
+            </section>
+        <% } %>
+    </main>
+
+    <script>    
+        function showDetail(id) {
+            const description = document.getElementById(`${id}-des`);
+            if (description) {
+                description.classList.toggle('hidden');
+            }
+        }
+    </script>
+</body>
+
+</html>
